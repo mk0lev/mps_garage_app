@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="utf-8">
+    <title>Automotive Workshop</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet">
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="/lib/flaticon/font/flaticon.css" rel="stylesheet">
+    <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+<!-- Nav Bar Start -->
+<div class="navbar navbar-expand-lg bg-light navbar-light">
+    <div class="container-fluid">
+        <a href="/" class="navbar-brand">Automotive <span>Workshop</span></a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+            <div class="navbar-nav ml-auto">
+                <a href="/" class="nav-item nav-link">Home</a>
+                <a href="/client/booking" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}"
+                   sec:authorize="hasRole('ROLE_USER')">Booking</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"th:if="${#authorization.expression('isAuthenticated()')}"
+                       sec:authorize="hasRole('ROLE_USER')">History of</a>
+                    <div class="dropdown-menu">
+                        <a href="history_clients.html" class="dropdown-item" th:if="${#authorization.expression('isAuthenticated()')}"
+                           sec:authorize="hasRole('ROLE_USER')">Clients</a>
+                        <a href="history_repairman.html" class="dropdown-item" th:if="${#authorization.expression('isAuthenticated()')}"
+                           sec:authorize="hasRole('ROLE_USER')">Repairmen</a>
+                        <a href="history_appointments.html" class="dropdown-item" th:if="${#authorization.expression('isAuthenticated()')}"
+                           sec:authorize="hasRole('ROLE_USER')">Appointments</a>
+                    </div>
+                </div>
+                <a href="/client/add_new_car" class="nav-item nav-link active" th:if="${#authorization.expression('isAuthenticated()')}"
+                   sec:authorize="hasRole('ROLE_USER')">Add a car</a>
+                <a href="my_cars.html" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}"
+                   sec:authorize="hasRole('ROLE_USER')">My cars</a>
+                <a href="/logout" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}">Log Out</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Nav Bar End -->
+
+
+<!-- Page Header Start -->
+<div class="page-header mb-0">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2>Add your new car information!</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Booking Start -->
+<div class="booking">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="booking-content">
+                    <div class="section-header">
+                        <h2 id="new-car">Make a profile of your new car!</h2>
+                    </div>
+                    <div class="about-text">
+                        <p>
+                            Here you can add the information about your new car. We require information like car brand, model, year of production, plate number and color, so we can make it easier for our mechanics. That way you will get your car back even quicker!
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="booking-form">
+                    <form action="#" th:action="@{/client/add_new_car/add_cars}" th:object="${vehicle}" method='POST'>
+                            <div class="control-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Car brand" required="required" th:field="*{manufacturer}"/>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Car model" required="required" th:field="*{model}"/>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Year of production" required="required" th:field="*{year}"/>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Plate number" required="required" th:field="*{number}"/>
+                                    <div class="input-group-append">
+                                        <div class="input-group-text"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                            <button class="btn custom-btn" type="submit">Submit</button>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Booking End -->
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="/lib/easing/easing.min.js"></script>
+<script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="/lib/tempusdominus/js/moment.min.js"></script>
+<script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+<script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+<!-- Template Javascript -->
+<script src="/js/main.js"></script>
+
+</body>
+</html>

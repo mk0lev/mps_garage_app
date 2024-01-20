@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <meta charset="utf-8">
+        <title>Automotive Workshop</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400|Nunito:600,700" rel="stylesheet">
+
+        <!-- CSS Libraries -->
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+        <link href="/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="/lib/flaticon/font/flaticon.css" rel="stylesheet">
+        <link href="/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+        <!-- Template Stylesheet -->
+        <link href="/css/style.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- Nav Bar Start -->
+        <div class="navbar navbar-expand-lg bg-light navbar-light">
+            <div class="container-fluid">
+                <a href="index.html" class="navbar-brand">Automotive <span>Workshop</span></a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto">
+                        <a href="index.html" class="nav-item nav-link active">Home</a>
+                        <a href="/client/booking" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_USER')">Booking</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_USER')">History of</a>
+                            <div class="dropdown-menu">
+                                <a href="history_clients.html" class="dropdown-item" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_USER')">Clients</a>
+                                <a href="history_repairman.html" class="dropdown-item" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_ADMIN')">Repairmen</a>
+                                <a href="history_appointments.html" class="dropdown-item" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_USER')">Appointments</a>
+                            </div>
+                        </div>
+                        <a href="/client/add_new_car" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_USER')">Add a car</a>
+                        <a href="/client/add_new_car/all" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}" sec:authorize="hasRole('ROLE_USER')">My cars</a>
+                        <a href="/login" class="nav-item nav-link" th:if="!${#authorization.expression('isAuthenticated()')}">Sign in</a>
+                        <a href="/register" class="nav-item nav-link" th:if="!${#authorization.expression('isAuthenticated()')}">Sign up</a>
+                        <a href="/logout" class="nav-item nav-link" th:if="${#authorization.expression('isAuthenticated()')}">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Nav Bar End -->
+
+
+        <!-- Carousel Start -->
+        <div class="carousel">
+                <div class="owl-carousel">
+                    <div class="carousel-item">
+                        <div class="carousel-img">
+                            <img src="/img/new_background_photo.jpg">
+                        </div>
+                        <div class="carousel-text">
+                            <h1>Best <span>Quality</span> Care for your <span>Car</span></h1>
+                            <p>
+                                We have the best repairmen, the best tools and technologies to take care of your car!
+                            </p>
+                            <div class="carousel-btn">
+                                <a class="btn custom-btn" href="/client/booking">Book an Appointment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <!-- Carousel End -->
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/lib/easing/easing.min.js"></script>
+        <script src="/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="/lib/tempusdominus/js/moment.min.js"></script>
+        <script src="/lib/tempusdominus/js/moment-timezone.min.js"></script>
+        <script src="/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+        <!-- Contact Javascript File -->
+        <script src="/mail/jqBootstrapValidation.min.js"></script>
+        <script src="/mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="/js/main.js"></script>
+    </body>
+</html>
